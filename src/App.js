@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+// import ForceGraph2D from 'react-force-graph-2d';
+import HighlightGraph from './highLightGraph';
 
 function App() {
+  // const myData = {
+  //     nodes: [{ id: 'a' }, { id: 'b' }, { id: 'c' },{ id: 'd' }],
+  //     links: [
+  //       { source: 'a', target: 'b' },
+  //       { source: 'c', target: 'a' }
+  //     ]
+  // };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HighlightGraph/>
+      {/* <ForceGraph2D graphData={myData} /> */}
     </div>
   );
 }
