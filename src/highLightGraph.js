@@ -1,11 +1,10 @@
 import ForceGraph2D from 'react-force-graph-2d';
-import SpriteText from 'three-spritetext';
 import React from 'react';
 // import ReactDOM from 'react-dom/client';
 
 function genRandomTree(N = 300, reverse = false) {
     return {
-        nodes: [...Array(N).keys()].map(i => ({ id: i })),
+        nodes: [...Array(N).keys()].map(i => ({ id: i, label : i+1 })),
         links: [...Array(N).keys()]
             .filter(id => id)
             .map(id => ({
@@ -17,7 +16,9 @@ function genRandomTree(N = 300, reverse = false) {
 
 const { useMemo, useState, useCallback } = React;
 
+// 节点大小
 const NODE_R = 8;
+
 const HighlightGraph = () => {
     const data = useMemo(() => {
         const gData = genRandomTree(80);
@@ -82,15 +83,39 @@ const HighlightGraph = () => {
         ctx.fill();
     }, [hoverNode]);
 
+    // const drawLabel = (node, ctx, globalScale) => {
+    //     const label = node.label;
+    //     ctx.fillStyle = 'black';
+    //     ctx.font = `${20 / globalScale}px Arial`;
+    //     ctx.fillText(label, node.x, node.y);
+    //   };
+
     return <ForceGraph2D
         graphData={data}
+        // 节点大小设置
         nodeRelSize={NODE_R}
+        nodeLabel={node => `${node.id}: ${node.label}`}
+        // nodeLabelAttr="label"
+        showNodeLabels={true}
+
         autoPauseRedraw={false}
+        // 箭头大小
+        linkDirectionalArrowLength={7}
+        // 箭头在link上的位置。取值为0-1
+        linkDirectionalArrowRelPos={1}
         linkWidth={link => highlightLinks.has(link) ? 5 : 1}
+        // link粒子流动效果，粒子大小
         linkDirectionalParticles={4}
+        // link宽度
         linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 4 : 0}
+        
         nodeCanvasObjectMode={node => highlightNodes.has(node) ? 'before' : undefined}
         nodeCanvasObject={paintRing}
+        // nodeCanvasObject={(node, ctx, globalScale) => {
+        //     drawLabel(node, ctx, globalScale);
+        //     paintRing(node, ctx);
+        //  }}
+
         onNodeHover={handleNodeHover}
         onLinkHover={handleLinkHover}
         // 鼠标拖动的节点可以固定在原位置
@@ -98,22 +123,6 @@ const HighlightGraph = () => {
             node.fx = node.x;
             node.fy = node.y;
             node.fz = node.z;
-        }}
-        linkThreeObjectExtend={true}
-        linkThreeObject={link => {
-            // extend link with text sprite
-            const sprite = new SpriteText(`${link.source} > ${link.target}`);
-            sprite.color = 'lightgrey';
-            sprite.textHeight = 1.5;
-            return sprite;
-        }}
-        linkPositionUpdate={(sprite, { start, end }) => {
-            const middlePos = Object.assign(...['x', 'y', 'z'].map(c => ({
-                [c]: start[c] + (end[c] - start[c]) / 2 // calc middle point
-            })));
-
-            // Position sprite
-            Object.assign(sprite.position, middlePos);
         }}
     />;
 };
