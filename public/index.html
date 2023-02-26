@@ -3,10 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <title>React App</title>
+    <link rel="style-neo4jd3" href="/node_modules/neo4jd3/dist/css/neo4jd3.min.css">
+    <link rel="stylesheet" type="text/css" href="/node_modules/neo4jd3/src/main/styles/neo4jd3.scss">
+    <title>Neo4j</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/node_modules/neo4jd3/dist/js/neo4jd3.min.js"></script>
+    <script>
+      window.d3 = d3;
+    </script>
     <div id="root"></div>
   </body>
 </html>

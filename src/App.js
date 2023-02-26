@@ -1,97 +1,40 @@
-// import ForceGraph2D from 'react-force-graph-2d';
-import HighlightGraph from './highLightGraph';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import {
+  ContainerOutlined,
+  DesktopOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
 import React from 'react';
+import { useRoutes } from 'react-router-dom'
+import routes from './routes';
+import LeftMenu from './components/leftMenu';
 
-const { Header, Content, Sider } = Layout;
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
-const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
-  const key = String(index + 1);
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-    children: new Array(4).fill(null).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
 
+const { Header, Content } = Layout;
+const items1 = [
+  {key: '1', label:'菜单一', icon: <PieChartOutlined />, to: '/option'},
+  {key: '2', label:'菜单二', icon: <DesktopOutlined />, to: '/option'},
+  {key: '3', label:'菜单三', icon: <ContainerOutlined />, to: '/option'},
+]
 function App() {
-  // const myData = {
-  //     nodes: [{ id: 'a' }, { id: 'b' }, { id: 'c' },{ id: 'd' }],
-  //     links: [
-  //       { source: 'a', target: 'b' },
-  //       { source: 'c', target: 'a' }
-  //     ]
-  // };
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
+  const element = useRoutes(routes)
   return (
-    <div className="App">
-      <Layout>
-        <Header className="header">
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
-        </Header>
+      <div className="App">
         <Layout>
-          <Sider
-            width={200}
-            style={{
-              background: colorBgContainer,
-            }}
-          >
-            <Menu
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              defaultOpenKeys={['sub1']}
-              style={{
-                height: '100%',
-                borderRight: 0,
-              }}
-              items={items2}
-            />
-          </Sider>
-          <Layout
-            style={{
-              padding: '0 24px 24px',
-            }}
-          >
-            <Breadcrumb
-              style={{
-                margin: '16px 0',
-              }}
-            >
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <Content
-              style={{
-                padding: 24,
-                margin: 0,
-                minHeight: 200,
-                background: colorBgContainer,
-              }}
-            >
-               <HighlightGraph />
-            </Content>
+          <Header className="header">
+            <div className="logo" />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+          </Header>
+          <Layout>
+            <LeftMenu/>
+            <Layout style={{padding: '0 24px 24px'}}>
+              <Content>
+                {element}
+              </Content>
+            </Layout>
           </Layout>
         </Layout>
-      </Layout>
-
-     
-    </div>
+      </div>
   );
 }
 
