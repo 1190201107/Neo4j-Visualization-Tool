@@ -8,6 +8,9 @@ import React from 'react';
 import { useRoutes } from 'react-router-dom'
 import routes from './routes';
 import LeftMenu from './components/leftMenu';
+import store from './store'
+import { Provider } from 'react-redux';
+
 
 
 const { Header, Content } = Layout;
@@ -19,6 +22,7 @@ const items1 = [
 function App() {
   const element = useRoutes(routes)
   return (
+    <Provider store={store}>
       <div className="App">
         <Layout>
           <Header className="header">
@@ -35,6 +39,8 @@ function App() {
           </Layout>
         </Layout>
       </div>
+    </Provider>
+      
   );
 }
 
