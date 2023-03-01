@@ -60,7 +60,6 @@ function BeautyGraph() {
 			onNodeDoubleClick: function (node) {
 				switch (node.id) {
 					case "25":
-						// Google
 						window.open(node.properties.url, "_blank")
 						break
 					default:
