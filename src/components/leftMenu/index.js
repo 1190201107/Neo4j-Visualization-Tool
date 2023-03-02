@@ -84,7 +84,7 @@ const LeftMenu = () => {
 				{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
 			</Button>
 			<Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
-				<Menu id="left-menu-select" mode="inline" theme="dark">
+				<Menu mode="inline" theme="dark" style={{ marginBottom: 16 }}>
 					{renderMenu(items)}
 				</Menu>
 			</Sider>

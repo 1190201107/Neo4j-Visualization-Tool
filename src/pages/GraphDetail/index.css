@@ -1,0 +1,7 @@
+.ant-layout-sider.ant-layout-sider-light#graph-card-sider {
+  display: block !important;
+  width: 40vh !important;
+  max-width: 40vh !important;
+  min-width: 20vh !important;
+  flex: none !important;
+}
