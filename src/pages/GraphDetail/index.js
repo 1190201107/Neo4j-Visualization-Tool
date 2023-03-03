@@ -4,6 +4,7 @@ import {
   AlignLeftOutlined,
   DeploymentUnitOutlined,
   DownloadOutlined,
+  ImportOutlined,
 } from "@ant-design/icons"
 import { Layout, Menu } from "antd"
 import { Link, Outlet } from "react-router-dom"
@@ -15,18 +16,20 @@ const items = [
   { key: "1", label: "Graph ", icon: <DeploymentUnitOutlined />, to: "graph" },
   { key: "2", label: "Table", icon: <AlignLeftOutlined />, to: "table" },
   { key: "3", label: "Text", icon: <ContainerOutlined />, to: "text" },
-  // { key: "4", label: "Export", icon: <DownloadOutlined />, to: "option" },
+  { key: "4", label: "Export", icon: <DownloadOutlined />, to: "option" },
 ]
 
 function renderMenu(items) {
   return items.map((item) => {
     return (
-      <Menu.Item key={item.key}>
-        <Link to={item.to}>
-          {item.icon}
-          <span>{item.label}</span>
-        </Link>
-      </Menu.Item>
+      <>
+        <Menu.Item key={item.key}>
+          <Link to={item.to}>
+            {item.icon}
+            <span>{item.label}</span>
+          </Link>
+        </Menu.Item>
+      </>
     )
   })
 }

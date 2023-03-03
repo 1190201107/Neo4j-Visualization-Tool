@@ -2,6 +2,9 @@
   display: block !important;
   width: 40vh !important;
   max-width: 40vh !important;
-  min-width: 20vh !important;
+  min-width: none !important;
   flex: none !important;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: 5px;
 }

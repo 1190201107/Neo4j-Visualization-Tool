@@ -12,7 +12,7 @@ import Add from "./Add"
 import Search from "./Search"
 
 const MessageCard = () => {
-  const [value, setValue] = useState("Map")
+  const [value, setValue] = useState("Information")
   return (
     <>
       <Segmented
@@ -47,7 +47,7 @@ const MessageCard = () => {
       />
       <div>
         {value ? (
-          <div>
+          <div style={{ padding: 10 }}>
             {value === "Information" && <Information />}
             {value === "Add" && <Add />}
             {value === "Delete" && <Delete />}
