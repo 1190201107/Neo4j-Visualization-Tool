@@ -49,11 +49,11 @@ function renderMenu(items) {
 const { Sider } = Layout
 const items = [
   getItem("数据展示", "1", <PieChartOutlined />, "/graphDetail"),
-  getItem("数据导入", "2", <DesktopOutlined />, "/login"),
-  getItem("数据导出", "3", <UploadOutlined />, "/option3"),
-  getItem("数据库配置", "4", <SettingOutlined />, "/option4"),
-  getItem("数据索引", "9", <NodeIndexOutlined />, "/option9"),
-  getItem("问题反馈", "4", <QuestionCircleOutlined />, "/option5"),
+  getItem("数据导入", "2", <DesktopOutlined />, "/import"),
+  getItem("数据导出", "3", <UploadOutlined />, "/export"),
+  getItem("数据库配置", "4", <SettingOutlined />, "/login"),
+  getItem("数据索引", "5", <NodeIndexOutlined />, "/option9"),
+  getItem("问题反馈", "6", <QuestionCircleOutlined />, "/option6"),
 ]
 
 const LeftMenu = () => {
@@ -62,25 +62,31 @@ const LeftMenu = () => {
     setCollapsed(!collapsed)
   }
   return (
-    <div id="left-menu-box">
-      <Button
-        id="left-menu-button"
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-          marginLeft: 16,
-          marginTop: 16,
-        }}
-      >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
-      <Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
-        <Menu mode="inline" theme="dark" style={{ marginBottom: 16 }}>
-          {renderMenu(items)}
-        </Menu>
-      </Sider>
-    </div>
+    <>
+      <div id="left-menu-box">
+        <Button
+          id="left-menu-button"
+          type="primary"
+          onClick={toggleCollapsed}
+          style={{
+            marginBottom: 16,
+            marginLeft: 16,
+            marginTop: 16,
+          }}
+        >
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button>
+        <Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
+          <Menu mode="inline" theme="dark" style={{ marginBottom: 16 }}>
+            {renderMenu(items)}
+          </Menu>
+        </Sider>
+      </div>
+
+      <div style={{ display: "inline-block", "background-color": "white" }}>
+        text=======================
+      </div>
+    </>
   )
 }
 export default LeftMenu

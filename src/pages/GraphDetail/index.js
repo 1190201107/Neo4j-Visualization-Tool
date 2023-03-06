@@ -38,8 +38,8 @@ export default function GraphDetail() {
   return (
     <>
       <Header className="header">
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+        {/* <div className="logo" /> */}
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
           {renderMenu(items)}
         </Menu>
       </Header>

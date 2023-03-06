@@ -1,5 +1,6 @@
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons"
 import { Button, Form, Input, Space } from "antd"
+import "./index.css"
 
 const onFinish = (values) => {
   console.log("Received values of form:", values)
@@ -39,6 +40,7 @@ const formItemLayoutWithOutLabel = {
 }
 const Add = () => (
   <div
+    className="label-box"
     // 超出部分显示滚动条
     style={{
       "max-height": "500px",
@@ -46,7 +48,7 @@ const Add = () => (
       "overflow-x": "hidden",
     }}
   >
-    <div>添加节点</div>
+    <div className="information-first-title-add"> 添加节点 </div>
     <Form
       name="dynamic_form_nest_item"
       onFinish={onFinish}
@@ -56,7 +58,7 @@ const Add = () => (
       autoComplete="off"
       // {...formItemLayoutWithOutLabel}
     >
-      <div>标签：</div>
+      <div className="information-second-title-add"> 标签：</div>
       <Form.List name="labels">
         {(fields, { add, remove }) => (
           <>
@@ -99,7 +101,7 @@ const Add = () => (
           </>
         )}
       </Form.List>
-      <div>属性：</div>
+      <div className="information-second-title-add"> 属性：</div>
       <Form.List name="property">
         {(fields, { add, remove }) => (
           <>
