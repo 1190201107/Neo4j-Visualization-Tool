@@ -8,3 +8,8 @@
 #left-menu-box #left-menu #left-menu-select > li {
   border: 1px solid #FFFFFF;
 }
+.flex-box {
+  display: flex;
+  background-color: white;
+  width: 250px;
+}

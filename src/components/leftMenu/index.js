@@ -58,9 +58,14 @@ const items = [
 
 const LeftMenu = () => {
   const [collapsed, setCollapsed] = useState(false)
+  const [menuIndex, setMenuIndex] = useState(1)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
+  function onSelectedFunction({ key }) {
+    setMenuIndex(key)
+  }
+
   return (
     <>
       <div id="left-menu-box">
@@ -77,14 +82,24 @@ const LeftMenu = () => {
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </Button>
         <Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
-          <Menu mode="inline" theme="dark" style={{ marginBottom: 16 }}>
+          <Menu
+            mode="inline"
+            theme="dark"
+            style={{ marginBottom: 16 }}
+            onSelect={onSelectedFunction}
+          >
             {renderMenu(items)}
           </Menu>
         </Sider>
       </div>
 
-      <div style={{ display: "inline-block", "background-color": "white" }}>
-        text=======================
+      <div>
+        {menuIndex == "1" && <div className="flex-box">index = 1</div>}
+        {menuIndex == "2" && <div className="flex-box">index = 2</div>}
+        {menuIndex == "3" && <div className="flex-box">index = 3</div>}
+        {menuIndex == "4" && <div className="flex-box">index = 4</div>}
+        {menuIndex == "5" && <div className="flex-box">index = 5</div>}
+        {menuIndex == "6" && <div className="flex-box">index = 6</div>}
       </div>
     </>
   )
