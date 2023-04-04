@@ -49,7 +49,7 @@ const routes = [
   },
   {
     path: "/",
-    element: <Navigate to="/home" />,
+    element: <Navigate to="/graphDetail" />,
   },
 ]
 export default routes

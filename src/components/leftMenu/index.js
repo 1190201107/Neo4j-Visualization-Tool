@@ -14,6 +14,8 @@ import { Button, Menu, Layout } from "antd"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./index.css"
+import AllInformation from "./AllInformation"
+import Upload from "./Upload"
 
 function getItem(label, key, icon, to, children, type) {
   return {
@@ -48,12 +50,18 @@ function renderMenu(items) {
 
 const { Sider } = Layout
 const items = [
+  // getItem("数据展示", "1", <PieChartOutlined />, "/graphDetail"),
+  // getItem("数据导入", "2", <DesktopOutlined />, "/import"),
+  // getItem("数据导出", "3", <UploadOutlined />, "/export"),
+  // getItem("数据库配置", "4", <SettingOutlined />, "/login"),
+  // getItem("数据索引", "5", <NodeIndexOutlined />, "/option9"),
+  // getItem("问题反馈", "6", <QuestionCircleOutlined />, "/option6"),
   getItem("数据展示", "1", <PieChartOutlined />, "/graphDetail"),
-  getItem("数据导入", "2", <DesktopOutlined />, "/import"),
-  getItem("数据导出", "3", <UploadOutlined />, "/export"),
+  getItem("数据导入", "2", <DesktopOutlined />),
+  getItem("数据导出", "3", <UploadOutlined />),
   getItem("数据库配置", "4", <SettingOutlined />, "/login"),
-  getItem("数据索引", "5", <NodeIndexOutlined />, "/option9"),
-  getItem("问题反馈", "6", <QuestionCircleOutlined />, "/option6"),
+  getItem("数据索引", "5", <NodeIndexOutlined />),
+  getItem("问题反馈", "6", <QuestionCircleOutlined />),
 ]
 
 const LeftMenu = () => {
@@ -94,8 +102,16 @@ const LeftMenu = () => {
       </div>
 
       <div>
-        {menuIndex == "1" && <div className="flex-box">index = 1</div>}
-        {menuIndex == "2" && <div className="flex-box">index = 2</div>}
+        {menuIndex == "1" && (
+          <div className="flex-box">
+            <AllInformation />
+          </div>
+        )}
+        {menuIndex == "2" && (
+          <div className="flex-box">
+            <Upload />
+          </div>
+        )}
         {menuIndex == "3" && <div className="flex-box">index = 3</div>}
         {menuIndex == "4" && <div className="flex-box">index = 4</div>}
         {menuIndex == "5" && <div className="flex-box">index = 5</div>}

@@ -15,11 +15,12 @@ export default function Neo4jMenu() {
       <Layout id="neo4j-left-menu">
         <LeftMenu />
         <Layout style={{ padding: "0 0px 24px" }}>
+          {/* <GraphDetail /> */}
           <Content>{element}</Content>
         </Layout>
         {/* <Layout style={{ padding: "0 0px 24px" }}>
           <Content>
-            <GraphDetail />
+            
           </Content>
         </Layout> */}
       </Layout>
