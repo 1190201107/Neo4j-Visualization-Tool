@@ -14,6 +14,8 @@ import { Button, Menu, Layout } from "antd"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import "./index.css"
+import AllInformation from "./AllInformation"
+import Upload from "./Upload"
 
 function getItem(label, key, icon, to, children, type) {
   return {
@@ -48,39 +50,74 @@ function renderMenu(items) {
 
 const { Sider } = Layout
 const items = [
+  // getItem("数据展示", "1", <PieChartOutlined />, "/graphDetail"),
+  // getItem("数据导入", "2", <DesktopOutlined />, "/import"),
+  // getItem("数据导出", "3", <UploadOutlined />, "/export"),
+  // getItem("数据库配置", "4", <SettingOutlined />, "/login"),
+  // getItem("数据索引", "5", <NodeIndexOutlined />, "/option9"),
+  // getItem("问题反馈", "6", <QuestionCircleOutlined />, "/option6"),
   getItem("数据展示", "1", <PieChartOutlined />, "/graphDetail"),
-  getItem("数据导入", "2", <DesktopOutlined />, "/login"),
-  getItem("数据导出", "3", <UploadOutlined />, "/option3"),
-  getItem("数据库配置", "4", <SettingOutlined />, "/option4"),
-  getItem("数据索引", "9", <NodeIndexOutlined />, "/option9"),
-  getItem("问题反馈", "4", <QuestionCircleOutlined />, "/option5"),
+  getItem("数据导入", "2", <DesktopOutlined />),
+  getItem("数据导出", "3", <UploadOutlined />),
+  getItem("数据库配置", "4", <SettingOutlined />, "/login"),
+  getItem("数据索引", "5", <NodeIndexOutlined />),
+  getItem("问题反馈", "6", <QuestionCircleOutlined />),
 ]
 
 const LeftMenu = () => {
   const [collapsed, setCollapsed] = useState(false)
+  const [menuIndex, setMenuIndex] = useState(1)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
+  function onSelectedFunction({ key }) {
+    setMenuIndex(key)
+  }
+
   return (
-    <div id="left-menu-box">
-      <Button
-        id="left-menu-button"
-        type="primary"
-        onClick={toggleCollapsed}
-        style={{
-          marginBottom: 16,
-          marginLeft: 16,
-          marginTop: 16,
-        }}
-      >
-        {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-      </Button>
-      <Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
-        <Menu mode="inline" theme="dark" style={{ marginBottom: 16 }}>
-          {renderMenu(items)}
-        </Menu>
-      </Sider>
-    </div>
+    <>
+      <div id="left-menu-box">
+        <Button
+          id="left-menu-button"
+          type="primary"
+          onClick={toggleCollapsed}
+          style={{
+            marginBottom: 16,
+            marginLeft: 16,
+            marginTop: 16,
+          }}
+        >
+          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+        </Button>
+        <Sider id="left-menu" trigger={null} collapsible collapsed={collapsed}>
+          <Menu
+            mode="inline"
+            theme="dark"
+            style={{ marginBottom: 16 }}
+            onSelect={onSelectedFunction}
+          >
+            {renderMenu(items)}
+          </Menu>
+        </Sider>
+      </div>
+
+      <div>
+        {menuIndex == "1" && (
+          <div className="flex-box">
+            <AllInformation />
+          </div>
+        )}
+        {menuIndex == "2" && (
+          <div className="flex-box">
+            <Upload />
+          </div>
+        )}
+        {menuIndex == "3" && <div className="flex-box">index = 3</div>}
+        {menuIndex == "4" && <div className="flex-box">index = 4</div>}
+        {menuIndex == "5" && <div className="flex-box">index = 5</div>}
+        {menuIndex == "6" && <div className="flex-box">index = 6</div>}
+      </div>
+    </>
   )
 }
 export default LeftMenu

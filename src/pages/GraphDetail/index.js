@@ -38,8 +38,8 @@ export default function GraphDetail() {
   return (
     <>
       <Header className="header">
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+        {/* <div className="logo" /> */}
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
           {renderMenu(items)}
         </Menu>
       </Header>
@@ -47,7 +47,11 @@ export default function GraphDetail() {
         <Content style={{ paddingLeft: 16, paddingRight: 16 }}>
           <Outlet />
         </Content>
-        <Sider id="graph-card-sider" style={{ display: "flex" }} theme="light">
+        <Sider
+          id="graph-card-sider"
+          style={{ display: "flex", width: "30%" }}
+          theme="light"
+        >
           <MessageCard />
         </Sider>
       </Layout>
