@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom"
 import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Import from "../pages/Import"
-import Export from "../pages/Export"
+import ExportAll from "../pages/ExportAll"
 import GraphDetail from "../pages/GraphDetail"
 import Graph from "../pages/GraphDetail/Graph"
 import Table from "../pages/GraphDetail/Table"
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: "/export",
-    element: <Export />,
+    element: <ExportAll />,
   },
   {
     path: "/",
