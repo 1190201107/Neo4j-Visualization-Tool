@@ -1,0 +1,17 @@
+.json-show-container {
+  margin: 10px 10px;
+  height: 550px;
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+  background-color: rgba(0, 21, 41, 0.2);
+}
+::-webkit-scrollbar-track {
+  border-radius: 1em;
+  background-color: rgba(181, 164, 164, 0.2);
+}
