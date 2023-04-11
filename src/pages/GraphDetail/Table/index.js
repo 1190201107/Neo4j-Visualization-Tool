@@ -425,6 +425,8 @@ export default function Table() {
           displayDataTypes={false}
           displayObjectSize={false}
           iconStyle="square"
+          indentWidth={3} //缩进宽度
+          collapsed={4} //默认折叠层级
         />
       </div>
     </>

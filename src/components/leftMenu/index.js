@@ -17,6 +17,7 @@ import "./index.css"
 import AllInformation from "./AllInformation"
 import Upload from "./Upload"
 import Download from "./Download"
+import Question from "./Question"
 
 function getItem(label, key, icon, to, children, type) {
   return {
@@ -120,7 +121,11 @@ const LeftMenu = () => {
         )}
         {menuIndex == "4" && <div className="flex-box">index = 4</div>}
         {menuIndex == "5" && <div className="flex-box">index = 5</div>}
-        {menuIndex == "6" && <div className="flex-box">index = 6</div>}
+        {menuIndex == "6" && (
+          <div className="flex-box">
+            <Question />
+          </div>
+        )}
       </div>
     </>
   )

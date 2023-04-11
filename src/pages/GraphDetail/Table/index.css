@@ -3,6 +3,10 @@
   height: 550px;
   overflow: auto;
 }
+.rjv-array-bracket,
+.rjv-object-bracket {
+  color: #4096ff !important;
+}
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

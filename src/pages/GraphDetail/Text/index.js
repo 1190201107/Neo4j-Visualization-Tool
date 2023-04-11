@@ -423,6 +423,7 @@ export default function Text() {
     {
       title: "Properties",
       dataIndex: "properties",
+      render: (properties) => JSON.stringify(properties),
     },
   ]
   const relationshipsColumns = [
@@ -441,6 +442,7 @@ export default function Text() {
     {
       title: "Properties",
       dataIndex: "properties",
+      render: (properties) => JSON.stringify(properties),
     },
   ]
 
@@ -471,13 +473,13 @@ export default function Text() {
           <Table
             dataSource={data.results[0].data[0].graph.nodes}
             columns={nodesColumns}
-            pagination={{ pageSize: 8 }}
+            pagination={{ pageSize: 7 }}
           />
         ) : (
           <Table
             dataSource={data.results[0].data[0].graph.relationships}
             columns={relationshipsColumns}
-            pagination={{ pageSize: 8 }}
+            pagination={{ pageSize: 7 }}
           />
         )}
       </div>
