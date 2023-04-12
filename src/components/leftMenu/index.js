@@ -16,6 +16,11 @@ import { useState } from "react"
 import "./index.css"
 import AllInformation from "./AllInformation"
 import Upload from "./Upload"
+<<<<<<< HEAD
+=======
+import Download from "./Download"
+import Question from "./Question"
+>>>>>>> 2f4984324d87b1c9e7b8e05d4c2509c29f2120b4
 
 function getItem(label, key, icon, to, children, type) {
   return {
@@ -112,10 +117,25 @@ const LeftMenu = () => {
             <Upload />
           </div>
         )}
+<<<<<<< HEAD
         {menuIndex == "3" && <div className="flex-box">index = 3</div>}
         {menuIndex == "4" && <div className="flex-box">index = 4</div>}
         {menuIndex == "5" && <div className="flex-box">index = 5</div>}
         {menuIndex == "6" && <div className="flex-box">index = 6</div>}
+=======
+        {menuIndex == "3" && (
+          <div className="flex-box">
+            <Download />
+          </div>
+        )}
+        {menuIndex == "4" && <div className="flex-box">index = 4</div>}
+        {menuIndex == "5" && <div className="flex-box">index = 5</div>}
+        {menuIndex == "6" && (
+          <div className="flex-box">
+            <Question />
+          </div>
+        )}
+>>>>>>> 2f4984324d87b1c9e7b8e05d4c2509c29f2120b4
       </div>
     </>
   )

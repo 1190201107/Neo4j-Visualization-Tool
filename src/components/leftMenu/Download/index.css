@@ -1,0 +1,12 @@
+.Export-div {
+  padding: 30px 20px;
+  height: 100%;
+}
+.Export-div .Export-title {
+  display: block;
+  font-weight: 600;
+  font-family: Open Sans;
+  font-size: 18px ;
+  line-height: 20px;
+  margin-bottom: 20px;
+}

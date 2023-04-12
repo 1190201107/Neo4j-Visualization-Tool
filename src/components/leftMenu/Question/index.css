@@ -1,0 +1,28 @@
+.question-box {
+  padding: 10px;
+}
+.question-box .title {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.question-box .question {
+  margin-bottom: 10px;
+}
+.question-box .question .code {
+  background-color: #f0f0f0;
+  padding: 0 5px;
+}
+.anonymous-feedback {
+  display: block;
+  margin: 20px 10px;
+}
+.feedback-list {
+  margin-top: 20px;
+}
+.feedback-list h2 {
+  margin-bottom: 10px;
+}
+.feedback-list li {
+  list-style-type: circle;
+  margin-left: 20px;
+}
