@@ -72,8 +72,19 @@ const LeftMenu = () => {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
+
+  const [show, setShow] = useState(true)
+  const [leftPageIndex, setLeftPageIndex] = useState("")
+
   function onSelectedFunction({ key }) {
-    setMenuIndex(key)
+    if (leftPageIndex != key) {
+      setMenuIndex(key)
+      setLeftPageIndex(key)
+      setShow(true)
+    } else {
+      setShow(!show)
+    }
+    console.log("show", show)
   }
 
   return (
@@ -96,37 +107,40 @@ const LeftMenu = () => {
             mode="inline"
             theme="dark"
             style={{ marginBottom: 16 }}
-            onSelect={onSelectedFunction}
+            // onSelect={onSelectedFunction}
+            onClick={onSelectedFunction}
           >
             {renderMenu(items)}
           </Menu>
         </Sider>
       </div>
 
-      <div>
-        {menuIndex == "1" && (
-          <div className="flex-box">
-            <AllInformation />
-          </div>
-        )}
-        {menuIndex == "2" && (
-          <div className="flex-box">
-            <Upload />
-          </div>
-        )}
-        {menuIndex == "3" && (
-          <div className="flex-box">
-            <Download />
-          </div>
-        )}
-        {menuIndex == "4" && <div className="flex-box">index = 4</div>}
-        {menuIndex == "5" && <div className="flex-box">index = 5</div>}
-        {menuIndex == "6" && (
-          <div className="flex-box">
-            <Question />
-          </div>
-        )}
-      </div>
+      {show ? (
+        <div className="left-menu-container">
+          {menuIndex == "1" && (
+            <div className="flex-box">
+              <AllInformation />
+            </div>
+          )}
+          {menuIndex == "2" && (
+            <div className="flex-box">
+              <Upload />
+            </div>
+          )}
+          {menuIndex == "3" && (
+            <div className="flex-box">
+              <Download />
+            </div>
+          )}
+          {menuIndex == "4" && <div className="flex-box">index = 4</div>}
+          {menuIndex == "5" && <div className="flex-box">index = 5</div>}
+          {menuIndex == "6" && (
+            <div className="flex-box">
+              <Question />
+            </div>
+          )}
+        </div>
+      ) : null}
     </>
   )
 }

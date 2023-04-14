@@ -6,7 +6,7 @@ import {
   DownloadOutlined,
   ImportOutlined,
 } from "@ant-design/icons"
-import { Layout, Menu } from "antd"
+import { Layout, Menu, Button } from "antd"
 import { Link, Outlet } from "react-router-dom"
 import MessageCard from "./Graph/Card"
 import "./index.css"
@@ -35,10 +35,23 @@ function renderMenu(items) {
 }
 
 export default function GraphDetail() {
+  const [showCard, setShowCard] = React.useState(true)
+  function handleClick() {
+    setShowCard(!showCard)
+  }
+
   return (
     <>
       <Header className="header">
         {/* <div className="logo" /> */}
+
+        <Button
+          style={{ float: "right", marginTop: "20px" }}
+          onClick={handleClick}
+        >
+          Detail
+        </Button>
+
         <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
           {renderMenu(items)}
         </Menu>
@@ -47,13 +60,17 @@ export default function GraphDetail() {
         <Content style={{ paddingLeft: 16, paddingRight: 16 }}>
           <Outlet />
         </Content>
-        <Sider
-          id="graph-card-sider"
-          style={{ display: "flex", width: "30%" }}
-          theme="light"
-        >
-          <MessageCard />
-        </Sider>
+        {showCard ? (
+          <Sider
+            id="graph-card-sider"
+            style={{ display: "flex", width: "30%" }}
+            theme="light"
+          >
+            <div>
+              <MessageCard />
+            </div>
+          </Sider>
+        ) : null}
       </Layout>
     </>
   )

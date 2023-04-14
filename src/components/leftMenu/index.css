@@ -8,6 +8,21 @@
 #left-menu-box #left-menu #left-menu-select > li {
   border: 1px solid #FFFFFF;
 }
+.left-menu-container {
+  overflow: auto;
+}
+.left-menu-container ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.left-menu-container ::-webkit-scrollbar-thumb {
+  border-radius: 1em;
+  background-color: rgba(9, 31, 52, 0.1);
+}
+.left-menu-container ::-webkit-scrollbar-track {
+  border-radius: 1em;
+  background-color: rgba(181, 164, 164, 0.2);
+}
 .flex-box {
   display: flex;
   background-color: white;
