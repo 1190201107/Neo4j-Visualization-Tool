@@ -28,6 +28,7 @@ export default function Add() {
         formatProperties[item.key] = item.value
       })
       values.properties = formatProperties
+      console.log("values", values)
       dispatch(AddNode(values))
     }
   }

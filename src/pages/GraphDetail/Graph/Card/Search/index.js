@@ -1,33 +1,37 @@
 import { Select, Cascader, Button } from "antd"
 import { SearchOutlined } from "@ant-design/icons"
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import "./index.css"
+import { useSelector, useDispatch } from "react-redux"
+import { searchNodesbyLabelsAndProperties } from "../../../../../Action"
 
 export default function Search() {
+  const dispatch = useDispatch()
   const [selectedLabels, setSelectedLabels] = useState([])
-  const labels = ["Apples", "Nails", "Bananas", "Helicopters"]
+  const [selectedProperties, setSelectedProperties] = useState([])
+  const [condition, setCondition] = useState({})
+
+  const labels = useSelector((state) => state.Graph.graphAllLabel)
+
+  const reduxProperties = useSelector(
+    (state) => state.Graph.graphAllPropertiesValue
+  )
+  let properties = []
+  if (reduxProperties) {
+    properties = Object.keys(reduxProperties).map((key) => ({
+      label: key,
+      value: key,
+      children: reduxProperties[key].map((item) => ({
+        label: item,
+        value: item,
+      })),
+    }))
+  }
+
   const filteredOptions = labels.filter((o) => !selectedLabels.includes(o))
 
-  const properties = [
-    {
-      label: "Light",
-      value: "light",
-      children: new Array(20).fill(null).map((_, index) => ({
-        label: `Number ${index}`,
-        value: index,
-      })),
-    },
-    {
-      label: "name",
-      value: "name",
-      children: new Array(20).fill(null).map((_, index) => ({
-        label: `Number ${index}`,
-        value: index,
-      })),
-    },
-  ]
   const onChange = (value) => {
-    console.log(value)
+    setSelectedProperties(value)
   }
 
   const filter = (inputValue, path) =>
@@ -35,6 +39,27 @@ export default function Search() {
       (option) =>
         option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
     )
+
+  const dropdownRender = (menus) => (
+    <div style={{ maxWidth: "400px" }}>{menus}</div>
+  )
+
+  const toSearchNodesbyLabelsAndProperties = () => {
+    setCondition({
+      labels: selectedLabels,
+      properties: selectedProperties,
+    })
+  }
+
+  const [mount, setMount] = useState(false) //防止第一次渲染时触发useEffect
+  useEffect(() => {
+    if (mount) {
+      console.log("searchNodesbyLabelsAndProperties")
+      dispatch(searchNodesbyLabelsAndProperties(condition))
+    } else {
+      setMount(true)
+    }
+  }, [condition])
 
   return (
     <>
@@ -63,18 +88,20 @@ export default function Search() {
           marginBottom: "20px",
         }}
         options={properties}
-        onChange={onChange}
+        onChange={onChange} //选择后的回调
         multiple
         maxTagCount={5} //最多显示5个标签
         maxTagTextLength={8} //最多显示8个字符
         placeholder="Properties"
         showSearch={{ filter }}
+        dropdownRender={dropdownRender} //自定义下拉菜单
       />
       <Button
         icon={<SearchOutlined />}
         style={{
           width: "100%",
         }}
+        onClick={toSearchNodesbyLabelsAndProperties}
       >
         Search
       </Button>

@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
-import "./index.css";
-import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import "./index.css"
+import { useEffect } from "react"
 import {
   GetAllLabelData,
   GetAllRelationNameData,
@@ -8,16 +8,17 @@ import {
   GetAllGraphDataByLabel,
   GetAllGraphDataByRelationshipTypes,
   GetAllGraphDataByPropertyKeys,
-} from "../../../Action";
-import { useMemo } from "react";
-import { Button } from "antd";
+  GetAllNodePropertyValue,
+} from "../../../Action"
+import { useMemo } from "react"
+import { Button } from "antd"
 
-const NODE_LABELS = "Node Labels";
-const RELATIONSHIP_TYPES = "Relationship Types";
-const PROEPERTY_KEYS = "Property Keys";
+const NODE_LABELS = "Node Labels"
+const RELATIONSHIP_TYPES = "Relationship Types"
+const PROEPERTY_KEYS = "Property Keys"
 
 export default function AllInformation() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   //node Labels
   const { nodeLabels, relationshipTypes, propertyKeys } = useSelector(
@@ -27,33 +28,34 @@ export default function AllInformation() {
         nodeLabels: state.Graph.graphAllLabel,
         relationshipTypes: state.Graph.graphAllRelationName,
         propertyKeys: state.Graph.graphAllPropertiesName,
-      };
+      }
     }
-  );
+  )
 
   useEffect(() => {
     // console.log("nodeLabels", nodeLabels);
     if (!nodeLabels) {
-      dispatch(GetAllLabelData());
+      dispatch(GetAllLabelData())
     }
-  }, [nodeLabels]);
+  }, [nodeLabels])
 
   useEffect(() => {
     // console.log("relationshipTypes", relationshipTypes);
     if (!relationshipTypes) {
-      dispatch(GetAllRelationNameData());
+      dispatch(GetAllRelationNameData())
     }
-  }, [relationshipTypes]);
+  }, [relationshipTypes])
 
   useEffect(() => {
     // console.log("propertyKeys", propertyKeys);
     if (!propertyKeys) {
-      dispatch(GetAllPropertiesNameData());
+      dispatch(GetAllPropertiesNameData())
+      dispatch(GetAllNodePropertyValue())
     }
-  }, [propertyKeys]);
+  }, [propertyKeys])
 
   function makeLabels(items, type) {
-    if (!items) return <div></div>;
+    if (!items) return <div></div>
     switch (type) {
       case NODE_LABELS:
         return items.map((item) => {
@@ -64,8 +66,8 @@ export default function AllInformation() {
             >
               {item}
             </Button>
-          );
-        });
+          )
+        })
       case RELATIONSHIP_TYPES:
         return items.map((item) => {
           return (
@@ -75,8 +77,8 @@ export default function AllInformation() {
             >
               {item}
             </Button>
-          );
-        });
+          )
+        })
       case PROEPERTY_KEYS:
         return items.map((item) => {
           return (
@@ -86,24 +88,24 @@ export default function AllInformation() {
             >
               {item}
             </Button>
-          );
-        });
+          )
+        })
     }
   }
 
   const InformationOnClick = (type, item) => {
     switch (type) {
       case NODE_LABELS:
-        dispatch(GetAllGraphDataByLabel(item));
-        break;
+        dispatch(GetAllGraphDataByLabel(item))
+        break
       case RELATIONSHIP_TYPES:
-        dispatch(GetAllGraphDataByRelationshipTypes(item));
-        break;
+        dispatch(GetAllGraphDataByRelationshipTypes(item))
+        break
       case PROEPERTY_KEYS:
-        dispatch(GetAllGraphDataByPropertyKeys(item));
-        break;
+        dispatch(GetAllGraphDataByPropertyKeys(item))
+        break
     }
-  };
+  }
 
   return (
     <>
@@ -123,5 +125,5 @@ export default function AllInformation() {
         </div>
       </div>
     </>
-  );
+  )
 }

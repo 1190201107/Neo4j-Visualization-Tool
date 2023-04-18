@@ -20,7 +20,7 @@ export default function Table() {
     <>
       <div className="json-show-container">
         <ReactJson
-          src={allGraphData}
+          src={allGraphData.graph}
           name={null}
           style={{ fontFamily: "consolas" }}
           enableClipboard={false}

@@ -40,17 +40,13 @@ export default function Information() {
     return state.Graph.hoverState
   })
 
-  const allGraphData = useSelector((state) => {
-    return state.Graph.graphAllData
-  })
-
-  const { overviewMessage, nodeCount, relationCount } = useMemo(() => {
+  const { overviewMessage, nodeCount, relationCount } = useSelector((state) => {
     return {
-      overviewMessage: allGraphData.countMessage,
-      nodeCount: allGraphData.graph.nodes.length,
-      relationCount: allGraphData.graph.relationships.length,
+      overviewMessage: state.Graph.graphAllData.countMessage,
+      nodeCount: state.Graph.graphAllData.graph.nodes.length,
+      relationCount: state.Graph.graphAllData.graph.relationships.length,
     }
-  }, [allGraphData])
+  })
 
   const hoverNode = useSelector((state) => {
     return state.Graph.hoverNode

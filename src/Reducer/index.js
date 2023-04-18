@@ -14,6 +14,10 @@ const initState = {
     },
   },
   hoverState: false,
+  deleteNodeBeforeMessage: {
+    labels: [],
+    properties: {},
+  },
 }
 
 /**
@@ -48,6 +52,12 @@ export default function Reducer(state = initState, action) {
         graphAllPropertiesName: data,
       }
     }
+    case actions.GET_ALL_PROPERTIES_VALUE: {
+      return {
+        ...state,
+        graphAllPropertiesValue: data,
+      }
+    }
     case actions.SET_HOVER_NODE: {
       return {
         ...state,
@@ -64,6 +74,24 @@ export default function Reducer(state = initState, action) {
       return {
         ...state,
         addNode: data,
+      }
+    }
+    case actions.DELETE_NODE: {
+      return {
+        ...state,
+        deleteNode: data,
+      }
+    }
+    case actions.SET_DELETE_NODE_BEFORE_MESSAGE: {
+      return {
+        ...state,
+        deleteNodeBeforeMessage: data,
+      }
+    }
+    case actions.UPDATE_NODE: {
+      return {
+        ...state,
+        updateNode: data,
       }
     }
     default:
