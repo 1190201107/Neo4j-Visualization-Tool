@@ -31,11 +31,11 @@ const MessageCard = () => {
             value: "Add",
             icon: <EditOutlined />,
           },
-          {
-            //   label: "Delete",
-            value: "Delete",
-            icon: <DeleteOutlined />,
-          },
+          // {
+          //   //   label: "Delete",
+          //   value: "Delete",
+          //   icon: <DeleteOutlined />,
+          // },
           {
             //   label: "Search",
             value: "Search",
@@ -50,7 +50,7 @@ const MessageCard = () => {
           <div style={{ padding: 10 }}>
             {value === "Information" && <Information />}
             {value === "Add" && <Add />}
-            {value === "Delete" && <Delete />}
+            {/* {value === "Delete" && <Delete />} */}
             {value === "Search" && <Search />}
           </div>
         ) : (

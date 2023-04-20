@@ -2,11 +2,15 @@
   padding: 30px 20px;
   height: 100%;
 }
-.Export-div .Export-title {
+.Export-title {
   display: block;
   font-weight: 600;
   font-family: Open Sans;
   font-size: 18px ;
   line-height: 20px;
   margin-bottom: 20px;
+}
+.Export-form-list-container {
+  width: 100%;
+  margin-top: 30px;
 }

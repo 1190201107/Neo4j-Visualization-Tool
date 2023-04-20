@@ -15,6 +15,7 @@ import {
   UpdateNodeMessage,
 } from "../../Action"
 import EditModal from "./EditModal"
+import { downloadFile } from "../../utils/download_file.js"
 
 function BeautyGraph() {
   const dispatch = useDispatch()
@@ -40,6 +41,9 @@ function BeautyGraph() {
     } else if (action === "delete") {
       dispatch(DeleteSelectedNode(tempNode))
       dispatch(DeleteSelectedNodeInRedux(tempNode, allGraphData))
+    } else if (action === "download") {
+      //将tempnode转换为字节流，调用download方法
+      downloadFile(JSON.stringify(tempNode), `node-id:${tempNode.id}.json`)
     }
 
     //更新数据
@@ -128,6 +132,12 @@ function BeautyGraph() {
             onClick={() => handleContextMenuAction("delete")}
           >
             Delete node
+          </div>
+          <div
+            className="context-menu-item"
+            onClick={() => handleContextMenuAction("download")}
+          >
+            Download
           </div>
           <div
             className="context-menu-item"

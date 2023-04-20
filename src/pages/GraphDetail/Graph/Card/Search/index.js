@@ -62,7 +62,7 @@ export default function Search() {
   }, [condition])
 
   return (
-    <>
+    <div className="label-box-search">
       <div className="search-first-title">Search Nodes</div>
       <div className="search-second-title">Labels</div>
       <Select
@@ -105,6 +105,6 @@ export default function Search() {
       >
         Search
       </Button>
-    </>
+    </div>
   )
 }

@@ -50,7 +50,7 @@ export default function Add() {
   return (
     <>
       <div
-        className="label-box"
+        className="label-box-add"
         // 超出部分显示滚动条
         style={{
           "max-height": "500px",
@@ -58,7 +58,7 @@ export default function Add() {
           "overflow-x": "hidden",
         }}
       >
-        <div className="information-first-title-add"> 添加节点 </div>
+        <div className="information-first-title-add"> Add Node </div>
         <Form
           name="dynamic_form_nest_item"
           onFinish={onFinish}

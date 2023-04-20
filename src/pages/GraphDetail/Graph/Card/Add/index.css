@@ -3,6 +3,7 @@
   font-family: Open Sans;
   font-size: 18px ;
   line-height: 20px;
+  margin-bottom: 10px;
 }
 .information-second-title-add {
   font-weight: 400;
@@ -11,6 +12,5 @@
   line-height: 28px;
 }
 .label-box-add {
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 0,10px;
 }

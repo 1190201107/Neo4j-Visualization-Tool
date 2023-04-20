@@ -94,6 +94,18 @@ export default function Reducer(state = initState, action) {
         updateNode: data,
       }
     }
+    case actions.GET_ALL_DATA_JSON_FILE: {
+      return {
+        ...state,
+        ExportAllDataJsonFile: data,
+      }
+    }
+    case actions.GET_DATA_BY_CONDITION_JSON_FILE: {
+      return {
+        ...state,
+        ExportDataByConditionJsonFile: data,
+      }
+    }
     default:
       return state
   }

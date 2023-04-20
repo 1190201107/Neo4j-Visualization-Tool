@@ -23,13 +23,27 @@
   display: inline-block;
   margin: 4px;
   padding: 6px;
-  background-color: aquamarine;
+  background-color: #4096ff;
   border-radius: 20px;
-  font-weight: 400;
+  font-weight: 500;
   font-family: Open Sans;
   font-size: 14px;
   line-height: 14px;
   text-align: center;
+  color: #FFFFFF;
+}
+.node-labels:hover {
+  display: inline-block;
+  margin: 4px;
+  padding: 6px;
+  background-color: #0453b4;
+  border-radius: 20px;
+  font-weight: 500;
+  font-family: Open Sans;
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  color: #FFFFFF;
 }
 .relationship-type {
   display: inline-block;

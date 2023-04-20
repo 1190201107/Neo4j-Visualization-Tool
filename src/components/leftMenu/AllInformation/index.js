@@ -63,6 +63,7 @@ export default function AllInformation() {
             <Button
               className="node-labels"
               onClick={() => InformationOnClick(type, item)}
+              type="primary"
             >
               {item}
             </Button>

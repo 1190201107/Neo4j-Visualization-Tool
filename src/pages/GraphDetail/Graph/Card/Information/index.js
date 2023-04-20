@@ -18,7 +18,9 @@ function makeLabels(items, type) {
     return items.map((item) => {
       console.log("item", item)
       return (
-        <div className="node-labels">{item.type + "(" + item.count + ")"}</div>
+        <div className="relationship-type">
+          {item.type + "(" + item.count + ")"}
+        </div>
       )
     })
   }

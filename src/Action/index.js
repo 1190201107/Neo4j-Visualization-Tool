@@ -1,4 +1,5 @@
 import { axios_instance } from "../utils/axios_instance"
+import { downloadFile } from "../utils/download_file"
 
 export const SELECT_DATE = "SELECT_DATE"
 export const GET_ALL_LABEL = "GET_ALL_LABEL"
@@ -12,6 +13,8 @@ export const ADD_NODE = "ADD_NODE"
 export const DELETE_NODE = "DELETE_NODE"
 export const SET_DELETE_NODE_BEFORE_MESSAGE = "SET_DELETE_NODE_BEFORE_MESSAGE"
 export const UPDATE_NODE = "UPDATE_NODE"
+export const GET_ALL_DATA_JSON_FILE = "GET_ALL_DATA_JSON_FILE"
+export const GET_DATA_BY_CONDITION_JSON_FILE = "GET_DATA_BY_CONDITION_JSON_FILE"
 
 export function selectDate(newDate) {
   return async (dispatch) => {
@@ -379,6 +382,54 @@ export function UpdateNodeMessage(node) {
       dispatch({
         type: "UPDATE_NODE",
         data: [],
+      })
+    }
+  }
+}
+
+export function ExportAllDataJsonFile(filename = "neo4j_data.json") {
+  return async (dispatch) => {
+    try {
+      const res = await axios_instance.get("/exportAllDataToJson", {
+        responseType: "blob",
+      })
+      downloadFile(res.data, filename)
+      dispatch({
+        type: GET_ALL_DATA_JSON_FILE,
+        data: true,
+      })
+    } catch (err) {
+      dispatch({
+        type: GET_ALL_DATA_JSON_FILE,
+        data: false,
+      })
+    }
+  }
+}
+
+export function ExportNodesbyLabelsAndProperties(
+  filename = "neo4j_data.json",
+  condition
+) {
+  return async (dispatch) => {
+    try {
+      console.log("condition", condition)
+      const res = await axios_instance.post(
+        "/exportNodesAndRelationToJson",
+        condition,
+        {
+          responseType: "blob",
+        }
+      )
+      downloadFile(res.data, filename)
+      dispatch({
+        type: GET_DATA_BY_CONDITION_JSON_FILE,
+        data: true,
+      })
+    } catch (err) {
+      dispatch({
+        type: GET_DATA_BY_CONDITION_JSON_FILE,
+        data: false,
       })
     }
   }
