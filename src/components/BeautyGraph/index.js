@@ -20,7 +20,7 @@ import { downloadFile } from "../../utils/download_file.js"
 function BeautyGraph() {
   const dispatch = useDispatch()
   const { allGraphData } = useSelector((state) => {
-    console.log("allGraphData -----state", state)
+    // console.log("allGraphData -----state", state)
     return {
       allGraphData: state.Graph.graphAllData,
     }

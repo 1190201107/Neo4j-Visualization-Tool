@@ -15,6 +15,7 @@ export const SET_DELETE_NODE_BEFORE_MESSAGE = "SET_DELETE_NODE_BEFORE_MESSAGE"
 export const UPDATE_NODE = "UPDATE_NODE"
 export const GET_ALL_DATA_JSON_FILE = "GET_ALL_DATA_JSON_FILE"
 export const GET_DATA_BY_CONDITION_JSON_FILE = "GET_DATA_BY_CONDITION_JSON_FILE"
+export const IMPORT_DATA_FROM_JSON_FILE = "IMPORT_DATA_FROM_JSON_FILE"
 
 export function selectDate(newDate) {
   return async (dispatch) => {
@@ -430,6 +431,31 @@ export function ExportNodesbyLabelsAndProperties(
       dispatch({
         type: GET_DATA_BY_CONDITION_JSON_FILE,
         data: false,
+      })
+    }
+  }
+}
+
+export function ImportDataFromJsonFile(fileData) {
+  return async (dispatch) => {
+    try {
+      const res = await axios_instance.post("/importDataFromJson", fileData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if (res.data.code === 200) {
+        dispatch({ type: "IMPORT_DATA_FROM_JSON_FILE", data: res.message })
+      } else {
+        dispatch({
+          type: "IMPORT_DATA_FROM_JSON_FILE",
+          data: [],
+        })
+      }
+    } catch (err) {
+      dispatch({
+        type: "IMPORT_DATA_FROM_JSON_FILE",
+        data: [],
       })
     }
   }

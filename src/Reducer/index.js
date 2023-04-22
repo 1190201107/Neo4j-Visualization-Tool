@@ -106,6 +106,12 @@ export default function Reducer(state = initState, action) {
         ExportDataByConditionJsonFile: data,
       }
     }
+    case actions.IMPORT_DATA_FROM_JSON_FILE: {
+      return {
+        ...state,
+        ImportDataFromJsonFile: data,
+      }
+    }
     default:
       return state
   }

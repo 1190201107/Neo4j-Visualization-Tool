@@ -44,7 +44,7 @@ const EditModal = ({ visible, onCancel, onSave }) => {
   //     form.resetFields()
   //   }, [data, form, visible])
 
-  console.log("data---inmodal", data)
+  // console.log("data---inmodal", data)
   const handleAddLabel = () => {
     setLabels([...labels, ""])
   }
@@ -80,7 +80,7 @@ const EditModal = ({ visible, onCancel, onSave }) => {
   }
 
   const handlePropertyKeyChange = (value, key) => {
-    console.log("handlePropertyKeyChange", value, key)
+    // console.log("handlePropertyKeyChange", value, key)
     const newProperties = [...properties]
     //遍历newProperties，找到key对应的索引，修改key
     for (let i = 0; i < newProperties.length; i++) {
@@ -92,7 +92,7 @@ const EditModal = ({ visible, onCancel, onSave }) => {
   }
 
   const handlePropertyValueChange = (value, key) => {
-    console.log("handlePropertyValueChange", value, key)
+    // console.log("handlePropertyValueChange", value, key)
     const newProperties = [...properties]
     //遍历newProperties，找到key对应的value，修改value
     for (let i = 0; i < newProperties.length; i++) {
@@ -124,7 +124,7 @@ const EditModal = ({ visible, onCancel, onSave }) => {
   )
 
   const renderPropertyItem = (key, value) => {
-    console.log("renderPropertyItem", key, value)
+    // console.log("renderPropertyItem", key, value)
     return (
       <Space className="render-item-container" key={key}>
         {/* key 的表单项 */}

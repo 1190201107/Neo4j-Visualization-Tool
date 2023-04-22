@@ -11,9 +11,10 @@
   margin-bottom: 20px;
 }
 .Upload-Information-Box .download-sample-file {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 .Upload-Information-Box .download-sample-file .download-sample-file-title {
+  margin-bottom: 10px;
   font-weight: 400;
   font-family: Open Sans;
   font-size: 16px ;
