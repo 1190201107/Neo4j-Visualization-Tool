@@ -42,18 +42,18 @@ const UploadInformation = () => {
     //上传文件改变时的回调,上传中、完成、失败都会调用这个函数。
     onChange(info) {
       const { status } = info.file
-      console.log("status", status)
-      if (
-        status === "uploading" &&
-        fileStatus === "File uploaded successfully"
-      ) {
-        info.file.status = "done"
-      } else if (
-        status === "uploading" &&
-        fileStatus === "File upload failed"
-      ) {
-        info.file.status = "error"
-      }
+      // console.log("status", status)
+      // if (
+      //   status === "uploading" &&
+      //   fileStatus === "File uploaded successfully"
+      // ) {
+      //   info.file.status = "done"
+      // } else if (
+      //   status === "uploading" &&
+      //   fileStatus === "File upload failed"
+      // ) {
+      //   info.file.status = "error"
+      // }
       if (status !== "uploading") {
         console.log("uploading", info.file, info.fileList)
       }
