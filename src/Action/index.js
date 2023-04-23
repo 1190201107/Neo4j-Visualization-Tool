@@ -16,6 +16,8 @@ export const UPDATE_NODE = "UPDATE_NODE"
 export const GET_ALL_DATA_JSON_FILE = "GET_ALL_DATA_JSON_FILE"
 export const GET_DATA_BY_CONDITION_JSON_FILE = "GET_DATA_BY_CONDITION_JSON_FILE"
 export const IMPORT_DATA_FROM_JSON_FILE = "IMPORT_DATA_FROM_JSON_FILE"
+export const SUBMIT_USER_MESSAGE = "SUBMIT_USER_MESSAGE"
+export const REFRESH_DATABASE = "REFRESH_DATABASE"
 
 export function selectDate(newDate) {
   return async (dispatch) => {
@@ -455,6 +457,52 @@ export function ImportDataFromJsonFile(fileData) {
     } catch (err) {
       dispatch({
         type: "IMPORT_DATA_FROM_JSON_FILE",
+        data: [],
+      })
+    }
+  }
+}
+
+export function SubmitUserMessage(uri, userMessage){
+  return async (dispatch) => {
+    try {
+      const res = await axios_instance.post("/neo4j-config", userMessage,{
+        params: {
+          uri: uri
+        }
+      })
+      if (res.data.code === 200) {
+        dispatch({ type: "SUBMIT_USER_MESSAGE", data: res.message })
+      } else {
+        dispatch({
+          type: "SUBMIT_USER_MESSAGE",
+          data: [],
+        })
+      }
+    } catch (err) {
+      dispatch({
+        type: "SUBMIT_USER_MESSAGE",
+        data: [],
+      })
+    }
+  }
+}
+
+export function RefreshDatabase(){
+  return async (dispatch) => {
+    try {
+      const res = await axios_instance.post("/actuator/refresh")
+      if (res.data.code === 200) {
+        dispatch({ type: "REFRESH_DATABASE", data: res.code })
+      } else {
+        dispatch({
+          type: "REFRESH_DATABASE",
+          data: [],
+        })
+      }
+    } catch (err) {
+      dispatch({
+        type: "REFRESH_DATABASE",
         data: [],
       })
     }

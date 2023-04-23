@@ -112,6 +112,18 @@ export default function Reducer(state = initState, action) {
         ImportDataFromJsonFile: data,
       }
     }
+    case actions.SUBMIT_USER_MESSAGE: {
+      return {
+        ...state,
+        submitUserMessage: data,
+      }
+    }
+    case actions.REFRESH_DATABASE:{
+      return {
+        ...state,
+        refreshDatabase: data,
+      }
+    }
     default:
       return state
   }

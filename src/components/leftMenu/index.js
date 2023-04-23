@@ -68,7 +68,7 @@ const items = [
 
 const LeftMenu = () => {
   const [collapsed, setCollapsed] = useState(false)
-  const [menuIndex, setMenuIndex] = useState(1)
+  const [menuIndex, setMenuIndex] = useState(4)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }
@@ -132,7 +132,7 @@ const LeftMenu = () => {
               <Download />
             </div>
           )}
-          {menuIndex == "4" && <div className="flex-box">index = 4</div>}
+          {/* {menuIndex == "4" && <div className="flex-box">index = 4</div>} */}
           {menuIndex == "5" && <div className="flex-box">index = 5</div>}
           {menuIndex == "6" && (
             <div className="flex-box">

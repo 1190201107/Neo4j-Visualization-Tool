@@ -10,8 +10,8 @@ import Text from "../pages/GraphDetail/Text"
 
 const routes = [
   {
-    path: "/home",
-    element: <Home />,
+    path: "/login",
+    element: <Login />,
   },
   {
     path: "/graphDetail",
