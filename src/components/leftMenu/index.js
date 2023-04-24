@@ -62,13 +62,13 @@ const items = [
   getItem("数据导入", "2", <DesktopOutlined />),
   getItem("数据导出", "3", <UploadOutlined />),
   getItem("数据库配置", "4", <SettingOutlined />, "/login"),
-  getItem("数据索引", "5", <NodeIndexOutlined />),
+  // getItem("数据索引", "5", <NodeIndexOutlined />),
   getItem("问题反馈", "6", <QuestionCircleOutlined />),
 ]
 
 const LeftMenu = () => {
-  const [collapsed, setCollapsed] = useState(false)
-  const [menuIndex, setMenuIndex] = useState(4)
+  const [collapsed, setCollapsed] = useState(true)
+  const [menuIndex, setMenuIndex] = useState(1)
   const toggleCollapsed = () => {
     setCollapsed(!collapsed)
   }

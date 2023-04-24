@@ -35,6 +35,7 @@ export default function Reducer(state = initState, action) {
       }
     }
     case actions.GET_ALL_GRAPH_DATA: {
+      console.log("GET_ALL_GRAPH_DATA", data)
       return {
         ...state,
         graphAllData: data,
@@ -118,7 +119,7 @@ export default function Reducer(state = initState, action) {
         submitUserMessage: data,
       }
     }
-    case actions.REFRESH_DATABASE:{
+    case actions.REFRESH_DATABASE: {
       return {
         ...state,
         refreshDatabase: data,

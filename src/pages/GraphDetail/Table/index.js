@@ -7,14 +7,41 @@ import { GetAllGraphData } from "../../../Action"
 export default function Table() {
   const dispatch = useDispatch()
   const { allGraphData } = useSelector((state) => {
+    console.log("state.Graph.graphAllData", state.Graph.graphAllData.graph)
     return {
       allGraphData: state.Graph.graphAllData,
     }
   })
 
-  // useEffect(() => {
-  //   if (!allGraphData) dispatch(GetAllGraphData())
-  // }, [allGraphData])
+  //去掉allGraphData.graph中relation的source和target属性中的x，y，vx，vy，index属性
+  // const graph = allGraphData.graph
+  // if (graph && graph.relationships && graph.nodes) {
+  //   graph.nodes.forEach((node) => {
+  //     delete node.x
+  //     delete node.y
+  //     delete node.vx
+  //     delete node.vy
+  //     delete node.index
+  //     delete node.fx
+  //     delete node.fy
+  //   })
+  //   graph.relationships.forEach((link) => {
+  //     delete link.source.x
+  //     delete link.source.y
+  //     delete link.source.vx
+  //     delete link.source.vy
+  //     delete link.source.index
+  //     delete link.target.x
+  //     delete link.target.y
+  //     delete link.target.vx
+  //     delete link.target.vy
+  //     delete link.target.index
+  //     delete link.linknum
+  //     delete link.index
+  //     delete link.startNode
+  //     delete link.endNode
+  //   })
+  // }
 
   return (
     <>
@@ -27,8 +54,8 @@ export default function Table() {
           displayDataTypes={false}
           displayObjectSize={false}
           iconStyle="square"
-          indentWidth={3} //缩进宽度
-          collapsed={4} //默认折叠层级
+          indentWidth={4} //缩进宽度
+          collapsed={3} //默认折叠层级
         />
       </div>
     </>

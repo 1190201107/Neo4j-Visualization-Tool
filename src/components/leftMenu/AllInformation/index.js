@@ -112,7 +112,7 @@ export default function AllInformation() {
     <>
       <div className="information-box">
         <div className="information-first-title">Database Information</div>
-        <div style={{ padding: 5 }}>
+        <div style={{ padding: 10 }}>
           <div className="information-second-title">{NODE_LABELS}</div>
           <div className="label-box">{makeLabels(nodeLabels, NODE_LABELS)}</div>
           <div className="information-second-title">{RELATIONSHIP_TYPES}</div>
