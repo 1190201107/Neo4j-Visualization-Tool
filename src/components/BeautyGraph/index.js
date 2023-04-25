@@ -15,6 +15,7 @@ import {
   UpdateNodeMessage,
 } from "../../Action"
 import EditModal from "./EditModal"
+import { CreateRelationship } from "./CreateRelationship"
 import { downloadFile } from "../../utils/download_file.js"
 
 function BeautyGraph() {
@@ -29,6 +30,10 @@ function BeautyGraph() {
   const [contextMenuPosition, setContextMenuPosition] = useState(null)
   const [selectedNode, setSelectedNode] = useState(null)
   const [editModalVisible, setEditModalVisible] = useState(false)
+  const [createRelationshipVisible, setCreateRelationshipVisible] =
+    useState(false)
+  const [haveStart, setHaveStart] = useState(false)
+  const [relationship, setRelationship] = useState({})
 
   const handleContextMenuAction = (action) => {
     const tempNode = {
@@ -44,6 +49,16 @@ function BeautyGraph() {
     } else if (action === "download") {
       //将tempnode转换为字节流，调用download方法
       downloadFile(JSON.stringify(tempNode), `node-id:${tempNode.id}.json`)
+    } else if (action === "createStart") {
+      setHaveStart(true)
+      setRelationship({
+        start: tempNode,
+      })
+      handleContextMenuClose()
+    } else if (action === "createEnd") {
+      setHaveStart(false)
+      setRelationship({ ...relationship, end: tempNode })
+      setCreateRelationshipVisible(true)
     }
 
     //更新数据
@@ -139,6 +154,21 @@ function BeautyGraph() {
           >
             Download
           </div>
+          {haveStart ? (
+            <div
+              className="context-menu-item"
+              onClick={() => handleContextMenuAction("createEnd")}
+            >
+              Create a relationship to this node
+            </div>
+          ) : (
+            <div
+              className="context-menu-item"
+              onClick={() => handleContextMenuAction("createStart")}
+            >
+              Create a relationship from this node
+            </div>
+          )}
           <div
             className="context-menu-item"
             onClick={() => handleContextMenuClose()}
@@ -153,6 +183,7 @@ function BeautyGraph() {
         onSave={useHandleSave}
         // data={data}
       />
+      <CreateRelationship visible={createRelationshipVisible} />
     </>
   )
 }

@@ -438,7 +438,7 @@ export function ExportNodesbyLabelsAndProperties(
   }
 }
 
-export function ImportDataFromJsonFile(fileData) {
+export function ImportDataFromJsonFile(fileData, setFileList, setFileStatus) {
   return async (dispatch) => {
     try {
       const res = await axios_instance.post("/importDataFromJson", fileData, {
@@ -447,8 +447,11 @@ export function ImportDataFromJsonFile(fileData) {
         },
       })
       if (res.data.code === 200) {
-        dispatch({ type: "IMPORT_DATA_FROM_JSON_FILE", data: res.message })
+        setFileList([])
+        setFileStatus("200")
+        dispatch({ type: "IMPORT_DATA_FROM_JSON_FILE", data: res.code })
       } else {
+        setFileStatus("500")
         dispatch({
           type: "IMPORT_DATA_FROM_JSON_FILE",
           data: [],
@@ -463,13 +466,13 @@ export function ImportDataFromJsonFile(fileData) {
   }
 }
 
-export function SubmitUserMessage(uri, userMessage){
+export function SubmitUserMessage(uri, userMessage) {
   return async (dispatch) => {
     try {
-      const res = await axios_instance.post("/neo4j-config", userMessage,{
+      const res = await axios_instance.post("/neo4j-config", userMessage, {
         params: {
-          uri: uri
-        }
+          uri: uri,
+        },
       })
       if (res.data.code === 200) {
         dispatch({ type: "SUBMIT_USER_MESSAGE", data: res.message })
@@ -488,7 +491,7 @@ export function SubmitUserMessage(uri, userMessage){
   }
 }
 
-export function RefreshDatabase(){
+export function RefreshDatabase() {
   return async (dispatch) => {
     try {
       const res = await axios_instance.post("/actuator/refresh")

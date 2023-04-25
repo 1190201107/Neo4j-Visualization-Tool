@@ -16,7 +16,7 @@ const items = [
   { key: "1", label: "Graph ", icon: <DeploymentUnitOutlined />, to: "graph" },
   { key: "2", label: "Table", icon: <AlignLeftOutlined />, to: "table" },
   { key: "3", label: "Text", icon: <ContainerOutlined />, to: "text" },
-  { key: "4", label: "Export", icon: <DownloadOutlined />, to: "option" },
+  // { key: "4", label: "Export", icon: <DownloadOutlined />, to: "option" },
 ]
 
 function renderMenu(items) {
