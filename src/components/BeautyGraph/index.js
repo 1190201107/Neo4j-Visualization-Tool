@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
-import Neo4jd3 from "neo4jd3"
-import "neo4jd3/dist/css/neo4jd3.css"
-import "./index.css"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState } from "react";
+import Neo4jd3 from "neo4jd3";
+import "neo4jd3/dist/css/neo4jd3.css";
+import "./index.css";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DeleteSelectedNode,
   DeleteSelectedNodeInRedux,
@@ -13,73 +13,86 @@ import {
   GetAllPropertiesNameData,
   SetDeleteNodeBeforeMessage,
   UpdateNodeMessage,
-} from "../../Action"
-import EditModal from "./EditModal"
-import { CreateRelationship } from "./CreateRelationship"
-import { downloadFile } from "../../utils/download_file.js"
+} from "../../Action";
+import EditModal from "./EditModal";
+import CreateRelationship from "./CreateRelationship";
+import { downloadFile } from "../../utils/download_file.js";
+import { setCreateRelationShip } from "../../Action";
 
 function BeautyGraph() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { allGraphData } = useSelector((state) => {
     // console.log("allGraphData -----state", state)
     return {
       allGraphData: state.Graph.graphAllData,
-    }
-  })
+    };
+  });
 
-  const [contextMenuPosition, setContextMenuPosition] = useState(null)
-  const [selectedNode, setSelectedNode] = useState(null)
-  const [editModalVisible, setEditModalVisible] = useState(false)
+  const [contextMenuPosition, setContextMenuPosition] = useState(null);
+  const [selectedNode, setSelectedNode] = useState(null);
+  const [editModalVisible, setEditModalVisible] = useState(false);
   const [createRelationshipVisible, setCreateRelationshipVisible] =
-    useState(false)
-  const [haveStart, setHaveStart] = useState(false)
-  const [relationship, setRelationship] = useState({})
+    useState(false);
+  const [haveStart, setHaveStart] = useState(false);
+  const [relationship, setRelationship] = useState({
+    start: { id: "", labels: [], properties: {} },
+    end: { id: "", labels: [], properties: {} },
+  });
 
   const handleContextMenuAction = (action) => {
     const tempNode = {
       id: selectedNode.id,
       labels: selectedNode.labels,
       properties: selectedNode.properties,
-    }
+    };
     if (action === "update") {
-      setEditModalVisible(true)
+      setEditModalVisible(true);
     } else if (action === "delete") {
-      dispatch(DeleteSelectedNode(tempNode))
-      dispatch(DeleteSelectedNodeInRedux(tempNode, allGraphData))
+      dispatch(DeleteSelectedNode(tempNode));
+      dispatch(DeleteSelectedNodeInRedux(tempNode, allGraphData));
     } else if (action === "download") {
       //将tempnode转换为字节流，调用download方法
-      downloadFile(JSON.stringify(tempNode), `node-id:${tempNode.id}.json`)
+      downloadFile(JSON.stringify(tempNode), `node-id:${tempNode.id}.json`);
     } else if (action === "createStart") {
-      setHaveStart(true)
+      setHaveStart(true);
       setRelationship({
         start: tempNode,
-      })
-      handleContextMenuClose()
+        end: { id: "", labels: [], properties: {} },
+      });
+      console.log("relationship start", relationship);
+      handleContextMenuClose();
     } else if (action === "createEnd") {
-      setHaveStart(false)
-      setRelationship({ ...relationship, end: tempNode })
-      setCreateRelationshipVisible(true)
+      setHaveStart(false);
+      setRelationship({ ...relationship, end: tempNode });
+      console.log("relationship end", relationship);
+      setCreateRelationshipVisible(true);
     }
 
     //更新数据
-    dispatch(GetAllLabelData())
-    dispatch(GetAllRelationNameData())
-    dispatch(GetAllPropertiesNameData())
-    handleContextMenuClose()
-  }
+    dispatch(GetAllLabelData());
+    dispatch(GetAllRelationNameData());
+    dispatch(GetAllPropertiesNameData());
+    handleContextMenuClose();
+  };
 
-  const UpdateNode = useSelector((state) => state.Graph.deleteNodeBeforeMessage)
+  useEffect(() => {
+    dispatch(setCreateRelationShip(relationship));
+  }, [relationship]);
+
+  const UpdateNode = useSelector(
+    (state) => state.Graph.deleteNodeBeforeMessage
+  );
   const useHandleSave = (newData) => {
-    newData.id = UpdateNode.id
-    console.log("newData", newData)
-    dispatch(UpdateNodeMessage(newData))
-    setEditModalVisible(false)
-  }
+    newData.id = UpdateNode.id;
+    console.log("newData", newData);
+    dispatch(UpdateNodeMessage(newData));
+    setEditModalVisible(false);
+  };
 
   const handleContextMenuClose = () => {
-    setContextMenuPosition(null)
-    setSelectedNode(null)
-  }
+    setContextMenuPosition(null);
+    setSelectedNode(null);
+  };
 
   useEffect(() => {
     if (allGraphData && allGraphData.graph) {
@@ -98,35 +111,35 @@ function BeautyGraph() {
         zoomFit: false,
         showImages: false,
         onNodeMouseEnter: function (node) {
-          dispatch(SetHoverNode(node.id, node.labels, node.properties))
-          dispatch(SetHoverState(true))
+          dispatch(SetHoverNode(node.id, node.labels, node.properties));
+          dispatch(SetHoverState(true));
         },
         onNodeMouseLeave: function () {
-          dispatch(SetHoverState(false))
+          dispatch(SetHoverState(false));
         },
         //鼠标右键点击事件
         onNodeClick: function (node, event) {
-          console.log("node", node)
+          console.log("node", node);
           dispatch(
             SetDeleteNodeBeforeMessage({
               id: node.id,
               labels: node.labels,
               properties: node.properties,
             })
-          )
-          var div = document.getElementById("BeautyGraph")
-          var reactObj = div.getBoundingClientRect() //获取元素相对于视窗的位置集合
+          );
+          var div = document.getElementById("BeautyGraph");
+          var reactObj = div.getBoundingClientRect(); //获取元素相对于视窗的位置集合
           // console.log(reactObj.left)
           // console.log(reactObj.top)
           setContextMenuPosition({
             x: node.x + reactObj.left,
             y: node.y + reactObj.top,
-          })
-          setSelectedNode(node)
+          });
+          setSelectedNode(node);
         },
-      })
+      });
     }
-  }, [allGraphData])
+  }, [allGraphData]);
 
   return (
     <>
@@ -159,14 +172,14 @@ function BeautyGraph() {
               className="context-menu-item"
               onClick={() => handleContextMenuAction("createEnd")}
             >
-              Create a relationship to this node
+              set end node
             </div>
           ) : (
             <div
               className="context-menu-item"
               onClick={() => handleContextMenuAction("createStart")}
             >
-              Create a relationship from this node
+              Set start node
             </div>
           )}
           <div
@@ -183,9 +196,13 @@ function BeautyGraph() {
         onSave={useHandleSave}
         // data={data}
       />
-      <CreateRelationship visible={createRelationshipVisible} />
+      <CreateRelationship
+        visible={createRelationshipVisible}
+        onCancel={() => setCreateRelationshipVisible(false)}
+        setVisible={setCreateRelationshipVisible}
+      />
     </>
-  )
+  );
 }
 
-export default BeautyGraph
+export default BeautyGraph;
